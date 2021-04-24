@@ -1,0 +1,21 @@
+% !TEX root = Skin_Lesion_Classification_Using_Machine_Learning.tex
+
+\section{Discussion and Conclusion [SE]}\label{sec:conclusion}
+
+One of the most important factors for the final score of the 2019 ISIC challenge was the handling of unknown data. At the time of writing, we do not have a performance score for the complete test dataset. An email asking for scoring was not was not answered. Our best evaluation score of 85.31\% for the deep learning approach is in the top range of evaluation scores that were claimed by participants of the ISIC challenge in there papers. The performance on the test dataset was in general much lower. 
+With that limitations, we can not rate if our models would achieve good final results and are able to precisely detect the unknown images. 
+
+% #TODO needs to be reviewed, this is just a draft
+
+We were able to achieve much better results using deep-learning and CNNs than with the simple classifiers. However it could not be determined if the limiting factor was the feature extraction or the support vector machine. A downside of the CNN based approach is the resource usage. We trained the SVM on a single core of a desktop CPU for under ten minutes while the CNN required several hours of training on an enterprise grade GPU. The required time for image prediction using the trained model scaled the same way. This aspect can become a problem when deploying the model for practical use as it enforces a powerful cloud computing infrastructure. 
+
+We belief that an automated machine learning based system for skin lesion classification could be applied in a medical context. The main use for a product like this would be an assistance to human doctors. To little guarantees can be given in order to convert this models in stand allone diagnostics systems. In last years ISIC challenge which had no unknown category, the majority of algorithms was able to beat human experts \cite{TSCHANDL2019938}. This experiment has not yet been done for the current challenge. Together with legal challenges to certify a medical product, we conclude that a hybrid approach of algorithm and human would be the best usage. 	
+
+Out of distribution detection is an active filed of research. Some theoretical problems of a softmax confidence based approach like adversarial attacks \cite{lee2018simple} are not relevant for this problem. However state of the are methods are usually more complex and can deliver more reliable results. These include diffrent loss functions and calibration or apply a two stage approach. In that case a unsupervised  model is used to detect unknown images before the main model classifies the remaining ones \cite{daxberger2019bayesian}. 
+
+% #TODO (hypothetical) future work
+% scaling high res images down is a waste of information, include some preprocessing in cnn (see challenge papers), better use of metadata
+In our input pipeline for the deep-learning approach, we scale down larger images to match the size of the HAM1000 dataset. This is a waste of information. In future work one should try to scale up the lower resolution images insteat. Given sufficient hardware, it would be possible to use larger EfficientNet Models and take larger crops. 
+
+Appart from the segmentation in the first phase, we did not apply and preprocessing other then the described data augmentation. It has been shown, that techniques like Color Constancy can improve the robustness and accuracy, specially when dealing with data from diffrent sources \cite{color}. 
+The inclusion of metadata improved our results while using a support vector machine. Applying it to a convolutional neural network turned out to be hard. Technical problems hindered us from achieving good results here. Nevertheless we do see potential to improve the results in the inclusion and would continue trying to use them efficiently.  

@@ -1,0 +1,63 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{babel}
+
+%added packages
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Skin Lesion Classification Using Machine Learning\\}
+
+% #NOTE without university name (which is a bit trivial), this fits into one line
+
+\author{\IEEEauthorblockN{Sai Preetham Sata}
+\IEEEauthorblockA{\textit{Hamburg University of Technology}\\
+sai.sata@tuhh.de}
+\and
+\IEEEauthorblockN{Harsha Bajje Thippeswamy}
+\IEEEauthorblockA{\textit{Hamburg University of Technology}\\
+harsha.bajje.thippeswamy@tuhh.de }
+\and
+\IEEEauthorblockN{Sebastian Engelhardt}
+\IEEEauthorblockA{\textit{Hamburg University of Technology}\\
+sebastian.engelhardt@tuhh.de}
+\and
+\IEEEauthorblockN{Tim Neuwerk}
+\IEEEauthorblockA{\textit{Hamburg University of Technology}\\
+tim.neuwerk@tuhh.de}
+}
+
+\maketitle
+%\tableofcontents
+\begin{abstract}[TN]
+In this work we present two different methods for the ISIC 2019 Skin Lesion Classification Challenge. The goal is to predict the class of a skin lesion based on dermoscopic images. Herefor a dataset of around 25000 images of eight different classes are given for training. Furthermore for most images additional meta data is provided which consists of information of the age and gender of the patient and the position of the skin lesion on the human body. The final test set contains an additional ninth class, which is unknown.\newline
+In our first approach we are using Support Vector Machine for the classification. Therefor we also consider image preprocessing and feature extraction. These features describe the shape and texture of the lesion.\newline
+In our second approach we are using deep learning to face the problem. We used the pretrained Convolutional Neural Network EfficientNet and applied transfer learning.\newline
+The second approach promises significantly better results than the first. We achieved a sensitivity score based on the training data of 85.31\%.
+\end{abstract}
+
+% Include files with content here, this makes it a bit cleaner
+
+\input{introduction}
+\input{svm}
+\input{cnn}
+% #NOTE I included most of it in the cnn section, change it back if you don't like it
+% \input{metadata_cnn}
+\input{unknown_data.tex}
+\input{conclusion}
+
+% include sources in bibtex style (available at most databases) in the sources.bib file
+
+\bibliographystyle{ieeetr}
+\bibliography{sources}
+\end{document}
